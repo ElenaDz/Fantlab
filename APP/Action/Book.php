@@ -8,7 +8,6 @@ class Book extends _Base
     {
         $book = \APP\Model\Books::getById($id);
 
-
         $content = Views::get(
             __DIR__.'/../View/Book.php',
             [
@@ -18,6 +17,7 @@ class Book extends _Base
 
         self::showLayout('Книгa', $content);
     }
+
     public static function getUrl(\APP\Entity\Book $book)
     {
         return "/books/$book->id/";

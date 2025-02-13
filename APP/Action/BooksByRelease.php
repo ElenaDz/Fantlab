@@ -4,6 +4,8 @@ namespace APP\Action;
 
 use SYS\Views;
 
+// fixme список книг и список книг отфильтрованных по году это один и тот же список, если передали год значит
+//  фильтруем, если нет - то нет. Избавься от этого контроллера и перепиши контролер списка книг
 class BooksByRelease extends _Base
 {
     public static function index($year)

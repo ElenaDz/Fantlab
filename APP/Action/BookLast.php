@@ -2,6 +2,7 @@
 
 namespace APP\Action;
 
+// fixme ерунда какая-то удалить
 class BookLast
 {
 

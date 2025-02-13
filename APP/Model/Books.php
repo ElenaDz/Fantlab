@@ -7,7 +7,6 @@ class Books
 {
     public static function getAll()
     {
-
         $book1 = new Book();
 
         $book1->id = 1;
@@ -37,9 +36,8 @@ class Books
     {
         $books = Books::getAll();
 
-        /**
-         * @var Book $book
-         */
+        // todo переделай метод получения всех книг так чтобы он возвращал в качестве ключей массива id книги,
+	    //  тогда будет намного проще получать книгу по id
         foreach ($books as $book)
         {
             if ($book->id === $id) {
@@ -52,9 +50,8 @@ class Books
     {
         $books = Books::getAll();
 
-        /**
-         * @var Book $book
-         */
+		// fixme используй функцию фильтрации
+	    // @see https://www.php.net/manual/ru/function.array-filter.php
         foreach ($books as $index => $book)
         {
             if ($book->year !== $year) {
@@ -70,9 +67,9 @@ class Books
         $year = null;
         $index_book = null;
 
-        /**
-         * @var Book $book
-         */
+        // todo используй функцию сортировки по дате и потом возьми последний элемент с помощью pop
+	    // @see https://www.php.net/manual/ru/function.sort.php
+	    // @see https://www.php.net/manual/ru/function.array-pop.php
         foreach ($books as $index => $book)
         {
             if (!$year) {

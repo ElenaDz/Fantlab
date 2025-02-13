@@ -1,8 +1,6 @@
 <?php
-
 namespace APP\Action;
 
-use SYS\Views;
 
 class Index extends _Base
 {
