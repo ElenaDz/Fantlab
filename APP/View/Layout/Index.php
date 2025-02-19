@@ -5,8 +5,8 @@
 
 use APP\Entity\Book;
 
+// fixme у нас только один шаблон Layout, видимо ты хотела создать шаблон главной страницы но разместила не в той папке
 ?>
-<!-- fixme это должно быть в шаблоне главной странице а не здесь -->
 <?php if ($_SERVER['REQUEST_URI'] === \APP\Action\Index::getUrl() ): ?>
 
     <a href="<?= \APP\Action\Book::getUrl($book) ?>"><?= $book->title ?></a>

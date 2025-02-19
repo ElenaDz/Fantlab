@@ -18,15 +18,9 @@ AddType application/x-httpd-php .htm
 
 RewriteEngine on
 
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} \.html$
-RewriteRule ^(.*)\.html$ $1/ [R=301,L]
-
-
-RewriteCond $1 						^(Img/|css/)
-RewriteRule ^(.*)$ 					$1 [L]
+RewriteCond $1             		^css/ [OR]
+RewriteCond $1             		^Img/
+RewriteRule ^(.*)$           	$1 [L]
 
 # /что угодно?GET					-> /?/что угодно/?GET
 # /что угодно/?GET					-> /?/что угодно/?GET

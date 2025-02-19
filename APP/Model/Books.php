@@ -44,31 +44,23 @@ class Books
     {
         $books = Books::getAll();
 
-        return  $books[$id];
-        // todo переделай метод получения всех книг так чтобы он возвращал в качестве ключей массива id книги, ok
-	    //  тогда будет намного проще получать книгу по id
+        return $books[$id];
     }
 
     public static function getByYear(int $year): array
     {
         $books = Books::getAll();
-		// fixme используй функцию фильтрации ok
-	    // @see https://www.php.net/manual/ru/function.array-filter.php
 
-        return array_filter($books, function ($book) use ($year){
+        return array_filter($books, function ($book) use ($year) {
             return $book->year === $year ;
         });
     }
 
-    public static function getLastBook():?Book
+    public static function getLastBook():Book
     {
         $books = Books::getAll();
 
-        // todo используй функцию сортировки по дате и потом возьми последний элемент с помощью pop ok
-	    // @see https://www.php.net/manual/ru/function.sort.php
-	    // @see https://www.php.net/manual/ru/function.array-pop.php
-
-        usort($books, function ($book1,$book2) {
+        usort($books, function ($book1, $book2) {
             return $book1->year<=>$book2->year;
         });
 

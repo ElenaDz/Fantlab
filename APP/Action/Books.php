@@ -7,8 +7,13 @@ class Books extends _Base
 {
     public static function index($year = null)
     {
+		// fixme это не нужно делать если запросили книги за год, подумай как правильно
         $books = \APP\Model\Books::getAll();
 
+		/**
+		 * fixme мне не нравиться идея заводить отдельную переменную для сбора данных для шаблона, избавься от нее,
+	     * пускай будет как в других контролерах
+		 */
         $content_data = [
             'books' => $books
         ];
@@ -30,10 +35,12 @@ class Books extends _Base
         self::showLayout('Книги', $content);
     }
 
-	// fixme все подчеркивания phpstorm во всех файлах нужно исправить ВСЕ ok
+
     public static function getUrl($year = null): string
     {
-        return $year != null
+        // fixme для проверки на пустоту лучше использовать empty
+	    // https://www.php.net/manual/ru/function.empty.php
+		return $year != null
             ? '/books/release/'.$year
             : '/books/';
     }

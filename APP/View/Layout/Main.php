@@ -6,7 +6,7 @@
 
 use APP\Entity\Book;
 
-// todo сделай минимальные стили чтобы сайт был похож на сайт чтобы было понятно где навигация где основной контент где футор ok
+// fixme у страницы есть горизонтальный scroll, он недопустим, избавься от него
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +44,11 @@ use APP\Entity\Book;
     </header>
 
     <main>
-        <!-- fixme это должно быть на главной странице в основном контенте, а не в навигации ok -->
+        <!-- fixme этот кусок относится к шаблону главной страницы, а не к layout -->
         <?php if ($_SERVER['REQUEST_URI'] === APP\Action\Books::getUrl($book->year)): ?>
             Книги за <?= $book->year ?> год
         <?php else: ?>
+            <!-- fixme этого не должно быть на каждой странице только на главной -->
             <a href="<?= APP\Action\Books::getUrl($book->year)?>">Книги за <?= $book->year ?> год</a>
         <?php endif; ?>
         <br>

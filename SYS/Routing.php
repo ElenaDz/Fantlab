@@ -12,9 +12,7 @@ class Routing
     function run()
     {
         $url = $_SERVER['REQUEST_URI'];
-        /**
-         * @var  $urls
-         */
+
         foreach ( $this->config as $url_config)
         {
             $url = urldecode($url);
@@ -39,12 +37,10 @@ class Routing
         }
 
         $code_not_found = 404;
-		// fixme дублирование, вынеси 404 в переменную ok
+
         http_response_code($code_not_found);
 
-		// fixme ну это вообще не куда не годиться, такие ошибки делать, давай внимательнее ok
-	    // todo переделай чтобы в строке показывался какой именно урл не найден ok
-        echo "Ощибка ".$code_not_found.". Страница ".$_SERVER['HTTP_HOST'].$url." не найдена";
+        echo "Ошибка ".$code_not_found.". Страница ".$url." не найдена";
 
         exit;
     }
