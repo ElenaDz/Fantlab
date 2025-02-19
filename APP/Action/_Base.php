@@ -4,7 +4,7 @@ namespace APP\Action;
 
 use SYS\Views;
 
-class _Base
+abstract class _Base
 {
     public static function showLayout($title, $content)
     {

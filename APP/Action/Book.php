@@ -15,7 +15,7 @@ class Book extends _Base
             ]
         );
 
-        self::showLayout('Книгa', $content);
+        self::showLayout('Книга', $content);
     }
 
     public static function getUrl(\APP\Entity\Book $book): string
