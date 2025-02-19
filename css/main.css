@@ -1,0 +1,51 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  margin: 0;
+}
+
+header, footer {
+  width: 100%;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+footer {
+  position: absolute;
+  height: 30px;
+  bottom: 0;
+  justify-content: center;
+}
+
+main {
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+}
+
+.nav {
+  display: flex;
+}
+.nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 10px;
+}
+.nav ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+}
+
+/*# sourceMappingURL=main.css.map */

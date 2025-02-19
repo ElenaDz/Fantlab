@@ -1,13 +1,37 @@
 AddDefaultCharset UTF-8
 
+#RewriteEngine on
+#
+## Файлы доступ к которым осуществляется напрямую (не через index.php)
+##RewriteCond $1             	^assets/
+##RewriteRule ^(.*)$           	$1 [L]
+#
+## Все остальные
+## /что угодно/?GET          	-> /?/что угодно/?GET
+#RewriteCond $1             		!^(index\.php)
+#RewriteCond  %{QUERY_STRING}	^(.*)$
+#RewriteRule ^(.*?)/?$       	index.php/?/$1/?%1 [L]
+
+
+AddDefaultCharset UTF-8
+AddType application/x-httpd-php .htm
+
 RewriteEngine on
 
-# Файлы доступ к которым осуществляется напрямую (не через index.php)
-#RewriteCond $1             	^assets/
-#RewriteRule ^(.*)$           	$1 [L]
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} \.html$
+RewriteRule ^(.*)\.html$ $1/ [R=301,L]
 
-# Все остальные
-# /что угодно/?GET          	-> /?/что угодно/?GET
-RewriteCond $1             		!^(index\.php)
-RewriteCond  %{QUERY_STRING}	^(.*)$
-RewriteRule ^(.*?)/?$       	index.php/?/$1/?%1 [L]
+
+RewriteCond $1 						^(Img/|css/)
+RewriteRule ^(.*)$ 					$1 [L]
+
+# /что угодно?GET					-> /?/что угодно/?GET
+# /что угодно/?GET					-> /?/что угодно/?GET
+RewriteBase /
+RewriteCond $1 						!^(index\.php)
+RewriteCond  %{QUERY_STRING}		^(.*)$
+RewriteRule ^(.*?)/?$ 				index.php/?/$1/&%1 [L]
+

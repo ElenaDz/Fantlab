@@ -1,11 +1,14 @@
 <?php
-/** @var \APP\Entity\Book[] $books */
-// fixme для переменных у нас для пробелов используется подчеркивание а не верблюжья нотация, исправить везде
-/** @var string $titleYear */
+/** @var Book[] $books */
+// fixme для переменных у нас для пробелов используется подчеркивание а не верблюжья нотация, исправить везде ok
+/** @var string $title_year */
+
+use APP\Entity\Book;
+
 ?>
 
-<!-- todo сделай заголовок "Книги за XXXX год" -->
-<h1>Книги <?= $titleYear ?></h1>
+<!-- todo сделай заголовок "Книги за XXXX год" ok -->
+    <h1>Книги <?= $title_year ?></h1>
 
 <ul>
     <?php foreach ($books as $book):  ?>

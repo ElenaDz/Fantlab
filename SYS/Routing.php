@@ -20,7 +20,7 @@ class Routing
             $url = urldecode($url);
 
             $pattern = $url_config[0];
-            $reg_ext = $pattern === '' ? '#/#' : "#/$pattern/?#";
+            $reg_ext = $pattern === '' ? '#/#' : "#/$pattern/?#u";
 
             $result = preg_match($reg_ext, $url, $matches);
 
@@ -38,12 +38,13 @@ class Routing
             }
         }
 
-		// fixme дублирование, вынеси 404 в переменную
-        http_response_code(404);
+        $code_not_found = 404;
+		// fixme дублирование, вынеси 404 в переменную ok
+        http_response_code($code_not_found);
 
-		// fixme ну это вообще не куда не годиться, такие ошибки делать, давай внимательнее
-	    // todo переделай чтобы в строке показывался какой именно урл не найден
-        echo "Ощибка 404. Страница не найдена";
+		// fixme ну это вообще не куда не годиться, такие ошибки делать, давай внимательнее ok
+	    // todo переделай чтобы в строке показывался какой именно урл не найден ok
+        echo "Ощибка ".$code_not_found.". Страница ".$_SERVER['HTTP_HOST'].$url." не найдена";
 
         exit;
     }
