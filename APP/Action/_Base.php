@@ -8,6 +8,7 @@ abstract class _Base
 {
     public static function showLayout($title, $content, $bread_crumbs = [])
     {
+		// fixme убрать
         $book = \APP\Model\Books::getLastBook();
 
         echo Views::get(

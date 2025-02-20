@@ -1,13 +1,10 @@
 <?php
+use APP\Entity\Book;
 
 /** @var string $title */
 /** @var string $content */
 /** @var array $bread_crumbs */
 /** @var Book $book */
-
-use APP\Entity\Book;
-
-// fixme у страницы есть горизонтальный scroll, он недопустим, избавься от него ok
 ?>
 <!DOCTYPE html>
 <html lang="en">

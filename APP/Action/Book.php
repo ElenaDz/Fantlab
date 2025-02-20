@@ -15,6 +15,7 @@ class Book extends _Base
             ]
         );
 
+	    // fixme опять отдельная переменная для данных для шаблона без необходимости? убрать
         $bread_crumbs = [
             [
                 'name' => 'Главная',
@@ -36,7 +37,12 @@ class Book extends _Base
             ]
         );
 
-        self::showLayout('Книга', $content, $content_bread_crumbs);
+        self::showLayout(
+			// fixme у каждой страницы должен быть уникальный заголовок, это нужно для поисковой оптимизации, очень важно
+			'Книга',
+			$content,
+			$content_bread_crumbs
+        );
     }
 
     public static function getUrl(\APP\Entity\Book $book): string

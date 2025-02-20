@@ -4,12 +4,8 @@ body {
   margin: 0;
 }
 
-ul {
-  list-style-type: none;
-}
-
 header, footer {
-  background-color: rgb(241, 241, 241);
+  background-color: #f1f1f1;
   display: flex;
   justify-content: start;
   align-items: center;

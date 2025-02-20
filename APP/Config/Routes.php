@@ -1,11 +1,9 @@
 <?php
 namespace APP\Config;
 
-use APP\Action\Author;
 use APP\Action\Book;
 use APP\Action\Books;
 use APP\Action\Index;
-use APP\Action\Testbox;
 
 class Routes
 {
@@ -16,6 +14,8 @@ class Routes
                 '',
 	            [Index::class, 'index']
             ],
+	        // fixme для одного контролера должен быть одна строка в файле конфигурации а у тебя 2 для Books исправь,
+	        //  здесь тебе пригодиться знания получение при написания регулярного выражения для testbox
             [
                 'books',
                 [Books::class, 'index']
@@ -23,14 +23,6 @@ class Routes
             [
                 'books/(\d+)',
                 [Book::class, 'index']
-            ],
-            [
-                'author/(\w+)',
-                [Author::class, 'index']
-            ],
-            [
-                'testbox-(\d+)(?:-(\d+))?',
-                [Testbox::class, 'index']
             ],
             [
                 'books/release/(\d+)',
