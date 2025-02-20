@@ -4,8 +4,11 @@ body {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 header, footer {
-  width: 100%;
   background-color: rgb(241, 241, 241);
   display: flex;
   justify-content: start;
@@ -14,6 +17,9 @@ header, footer {
 }
 
 footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   position: absolute;
   height: 30px;
   bottom: 0;
@@ -38,7 +44,6 @@ a {
 }
 .nav ul {
   display: flex;
-  list-style-type: none;
   padding: 10px;
 }
 .nav ul li {

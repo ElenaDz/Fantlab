@@ -2,11 +2,12 @@
 
 /** @var string $title */
 /** @var string $content */
+/** @var array $bread_crumbs */
 /** @var Book $book */
 
 use APP\Entity\Book;
 
-// fixme у страницы есть горизонтальный scroll, он недопустим, избавься от него
+// fixme у страницы есть горизонтальный scroll, он недопустим, избавься от него ok
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,14 +45,9 @@ use APP\Entity\Book;
     </header>
 
     <main>
-        <!-- fixme этот кусок относится к шаблону главной страницы, а не к layout -->
-        <?php if ($_SERVER['REQUEST_URI'] === APP\Action\Books::getUrl($book->year)): ?>
-            Книги за <?= $book->year ?> год
-        <?php else: ?>
-            <!-- fixme этого не должно быть на каждой странице только на главной -->
-            <a href="<?= APP\Action\Books::getUrl($book->year)?>">Книги за <?= $book->year ?> год</a>
+        <?php if ($_SERVER['REQUEST_URI'] !== \APP\Action\Index::getUrl()): ?>
+            <?= $bread_crumbs?>
         <?php endif; ?>
-        <br>
 
         <?=  $content; ?>
     </main>

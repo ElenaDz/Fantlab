@@ -25,7 +25,7 @@ class Routes
                 [Book::class, 'index']
             ],
             [
-                'author/[\w]+',
+                'author/(\w+)',
                 [Author::class, 'index']
             ],
             [

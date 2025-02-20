@@ -15,7 +15,28 @@ class Book extends _Base
             ]
         );
 
-        self::showLayout('Книга', $content);
+        $bread_crumbs = [
+            [
+                'name' => 'Главная',
+                'url' => Index::getUrl()
+            ],
+            [
+                'name' => 'Книги',
+                'url' => Books::getUrl()
+            ],
+            [
+                'name' => $book->title
+            ]
+        ];
+
+        $content_bread_crumbs = Views::get(
+            __DIR__.'/../View/Layout/BreadCrumbs.php',
+            [
+                'bread_crumbs' => $bread_crumbs
+            ]
+        );
+
+        self::showLayout('Книга', $content, $content_bread_crumbs);
     }
 
     public static function getUrl(\APP\Entity\Book $book): string

@@ -6,7 +6,7 @@ use SYS\Views;
 
 abstract class _Base
 {
-    public static function showLayout($title, $content)
+    public static function showLayout($title, $content, $bread_crumbs = [])
     {
         $book = \APP\Model\Books::getLastBook();
 
@@ -15,7 +15,8 @@ abstract class _Base
             [
                 'title' => $title,
                 'content' =>  $content,
-                'book' => $book
+                'book' => $book,
+                'bread_crumbs' => $bread_crumbs
             ]
         );
     }

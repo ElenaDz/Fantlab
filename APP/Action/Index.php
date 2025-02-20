@@ -10,7 +10,7 @@ class Index extends _Base
         $book = \APP\Model\Books::getLastBook();
 
         $content = Views::get(
-            __DIR__.'/../View/Layout/Index.php',
+            __DIR__ . '/../View/Index.php',
             [
                 'book' => $book
             ]
