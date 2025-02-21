@@ -56,7 +56,7 @@ class Books
         });
     }
 
-    public static function getLastBook():Book
+    public static function getNew($limit = 1): array
     {
         $books = Books::getAll();
 
@@ -64,6 +64,6 @@ class Books
             return $book1->year<=>$book2->year;
         });
 
-        return array_pop($books);
+        return array_slice($books, -$limit, $limit);
     }
 }

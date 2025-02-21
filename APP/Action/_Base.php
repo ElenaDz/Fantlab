@@ -8,16 +8,20 @@ abstract class _Base
 {
     public static function showLayout($title, $content, $bread_crumbs = [])
     {
-		// fixme убрать
-        $book = \APP\Model\Books::getLastBook();
+		// fixme убрать ok
+        $content_bread_crumbs = Views::get(
+            __DIR__ . '/../View/Blocks/BreadCrumbs.php',
+            [
+                'bread_crumbs' => $bread_crumbs
+            ]
+        );
 
         echo Views::get(
             __DIR__.'/../View/Layout/Main.php',
             [
                 'title' => $title,
                 'content' =>  $content,
-                'book' => $book,
-                'bread_crumbs' => $bread_crumbs
+                'bread_crumbs' => $content_bread_crumbs
             ]
         );
     }

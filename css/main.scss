@@ -48,5 +48,24 @@ a {
       width: 75px;
     }
   }
+}
 
+.book {
+  margin: 10px 0 0 10px;
+
+  .item {
+    display: flex;
+
+    dt {
+      display: flex;
+      align-items: center;
+      width: 90px;
+    }
+    .release, .name {
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      font-size: 17px;
+    }
+  }
 }

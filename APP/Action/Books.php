@@ -19,42 +19,35 @@ class Books extends _Base
             ]
         );
 
-        $bread_crumbs = [
-            [
-                'name' => 'Главная',
-                'url' => Index::getUrl()
-            ],
-            [
-                'name' => 'Книги'
-            ]
-	        // fixme не хватает пункта "За xxxx год", и не только думай как правильно должно быть
-        ];
+        $title = $year ? 'Книги за '.$year.' год' : 'Книги';
 
 		/**
 		 * fixme тебе не кажется плохой идеей в каждом контролере обращаться к шаблону хлебных крошек?
-		 *  перенеси это в шаблон layout
+		 *  перенеси это в шаблон layout ok
 	     */
-        $content_bread_crumbs = Views::get(
-            __DIR__.'/../View/Layout/BreadCrumbs.php',
-            [
-                'bread_crumbs' => $bread_crumbs
-            ]
-        );
 
         self::showLayout(
-			// fixme исправить, что именно писал в другом контролере
-			'Книги',
+			// fixme исправить, что именно писал в другом контролере ok
+            $title,
 			$content,
-			$content_bread_crumbs
+            [
+                [
+                    'name' => 'Главная',
+                    'url' => Index::getUrl()
+                ],
+                [
+                    'name' => $title
+                ]
+            ]
         );
     }
 
-
     public static function getUrl($year = null): string
     {
-        // fixme здесь дублирование /books/ Мы не делаем дублирования без необходимости Избавься
-		return empty($year)
-            ? '/books/'
-            : '/books/release/'.$year;
+        // fixme здесь дублирование /books/ Мы не делаем дублирования без необходимости Избавься ok
+
+        $url = empty($year) ? '': 'release/'.$year;
+
+        return '/books/'.$url;
     }
 }

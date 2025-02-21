@@ -15,33 +15,25 @@ class Book extends _Base
             ]
         );
 
-	    // fixme опять отдельная переменная для данных для шаблона без необходимости? убрать
-        $bread_crumbs = [
-            [
-                'name' => 'Главная',
-                'url' => Index::getUrl()
-            ],
-            [
-                'name' => 'Книги',
-                'url' => Books::getUrl()
-            ],
-            [
-                'name' => $book->title
-            ]
-        ];
-
-        $content_bread_crumbs = Views::get(
-            __DIR__.'/../View/Layout/BreadCrumbs.php',
-            [
-                'bread_crumbs' => $bread_crumbs
-            ]
-        );
+	    // fixme опять отдельная переменная для данных для шаблона без необходимости? убрать ok
 
         self::showLayout(
-			// fixme у каждой страницы должен быть уникальный заголовок, это нужно для поисковой оптимизации, очень важно
-			'Книга',
+			// fixme у каждой страницы должен быть уникальный заголовок, это нужно для поисковой оптимизации, очень важно ok
+            $book->title,
 			$content,
-			$content_bread_crumbs
+            [
+                [
+                    'name' => 'Главная',
+                    'url' => Index::getUrl()
+                ],
+                [
+                    'name' => 'Книги',
+                    'url' => Books::getUrl()
+                ],
+                [
+                    'name' => $book->title
+                ]
+            ]
         );
     }
 

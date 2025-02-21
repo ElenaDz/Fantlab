@@ -5,11 +5,16 @@ use APP\Entity\Book;
 ?>
 
 <h1><?= $book->title; ?></h1>
-<dl>
-    <dt>Название</dt>
-    <dd><?= $book->title; ?></dd>
+<dl class="book">
+    <div class="item">
+        <dt>Название:</dt>
+        <dd class="name"><?= $book->title; ?></dd>
+    </div>
 
-    <dt>Год выхода</dt>
-    <dd><?= $book->year; ?></dd>
+    <div class="item">
+        <dt>Год выхода:</dt>
+        <dd class="release"><?= $book->year; ?></dd>
+    </div>
+
 </dl>
 

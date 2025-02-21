@@ -5,7 +5,7 @@ body {
 }
 
 header, footer {
-  background-color: #f1f1f1;
+  background-color: rgb(241, 241, 241);
   display: flex;
   justify-content: start;
   align-items: center;
@@ -47,6 +47,24 @@ a {
   justify-content: center;
   align-items: center;
   width: 75px;
+}
+
+.book {
+  margin: 10px 0 0 10px;
+}
+.book .item {
+  display: flex;
+}
+.book .item dt {
+  display: flex;
+  align-items: center;
+  width: 90px;
+}
+.book .item .release, .book .item .name {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  font-size: 17px;
 }
 
 /*# sourceMappingURL=main.css.map */
