@@ -32,7 +32,7 @@ class Books extends _Base
 				// todo посмотри как нужно было сделать правильно
                 [
                     'name' => 'Книги',
-                    'url' => $year ? Books::getUrl() : null
+                    'url' => $title_suffix ? Books::getUrl() : null
                 ],
                 [
                     'name' => $title_suffix,
