@@ -7,7 +7,7 @@ class Index extends _Base
 {
     public static function index()
     {
-        $books = \APP\Model\Books::getNew();
+        $books = \APP\Model\Books::getNew(1);
 
         $content = Views::get(
             __DIR__ . '/../View/Index.php',

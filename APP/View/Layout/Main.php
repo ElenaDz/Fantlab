@@ -1,5 +1,6 @@
 <?php
 use APP\Entity\Book;
+use SYS\Views;
 
 /** @var string $title */
 /** @var string $content */
@@ -44,7 +45,12 @@ use APP\Entity\Book;
     <main>
         <?php if ($_SERVER['REQUEST_URI'] !== \APP\Action\Index::getUrl()): ?>
 
-            <?= $bread_crumbs?>
+            <?= Views::get(
+                __DIR__ . '/../Blocks/BreadCrumbs.php',
+                [
+                    'bread_crumbs' => $bread_crumbs
+                ]
+            );?>
 
         <?php endif; ?>
 

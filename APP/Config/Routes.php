@@ -19,8 +19,8 @@ class Routes
                 [Book::class, 'index']
             ],
             [
-				// fixme слэш в конце не хватает
-                'books/(?:release/(\d+))?',
+				// fixme слэш в конце не хватает ok
+                'books/(?:release/(\d+))?/?',
                 [Books::class, 'index']
             ]
         ];
