@@ -7,7 +7,8 @@ class Index extends _Base
 {
     public static function index()
     {
-        $books = \APP\Model\Books::getNew(1);
+		// fixme если не задавать ограничение то выводятся все книги, а не книги за последний год, а надо за последний год
+        $books = \APP\Model\Books::getNew();
 
         $content = Views::get(
             __DIR__ . '/../View/Index.php',

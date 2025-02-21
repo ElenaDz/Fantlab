@@ -56,7 +56,6 @@ class Books
         });
     }
 
-	// fixme limit 1 не пойдет, по умолчанию лимита нет null, 1 это ты в контролере задаешь ok
     public static function getNew($limit = null): array
     {
         $books = Books::getAll();

@@ -45,16 +45,18 @@ use SYS\Views;
     <main>
         <?php if ($_SERVER['REQUEST_URI'] !== \APP\Action\Index::getUrl()): ?>
 
-            <?= Views::get(
-                __DIR__ . '/../Blocks/BreadCrumbs.php',
-                [
-                    'bread_crumbs' => $bread_crumbs
-                ]
-            );?>
+            <?=
+                Views::get(
+                    __DIR__ . '/../Blocks/BreadCrumbs.php',
+                    [
+                        'bread_crumbs' => $bread_crumbs
+                    ]
+                );
+            ?>
 
         <?php endif; ?>
 
-        <?=  $content; ?>
+        <?= $content; ?>
     </main>
 
     <footer>

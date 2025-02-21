@@ -29,6 +29,7 @@ class Books extends _Base
                     'name' => 'Главная',
                     'url' => Index::getUrl()
                 ],
+				// fixme не правильно, если год не задана то "Книги", если задан "Книги / За xxxx год" где "книги" ссылка
                 [
                     'name' => $title
                 ]
