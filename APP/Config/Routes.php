@@ -19,7 +19,6 @@ class Routes
                 [Book::class, 'index']
             ],
             [
-				// fixme не правильно, работает со слеш и без Без не должен работать ok
                 'books(?:/release/(\d+))?/',
                 [Books::class, 'index']
             ]

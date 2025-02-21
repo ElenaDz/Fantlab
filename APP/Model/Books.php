@@ -56,8 +56,7 @@ class Books
         });
     }
 
-    public static function
-    getNew($limit = null): array
+    public static function getNew($limit = null): array
     {
         $books = Books::getAll();
         $year = null;
@@ -69,11 +68,7 @@ class Books
         }
 
         $books = array_filter($books, function ($book) use ($year) {
-            return $book->year === $year ;
-        });
-
-        usort($books, function ($book1, $book2) {
-            return $book1->year <=> $book2->year;
+            return $book->year === $year;
         });
 
         return array_slice($books, -1 * $limit);

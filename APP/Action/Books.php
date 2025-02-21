@@ -19,26 +19,23 @@ class Books extends _Base
             ]
         );
 
-        $title = $year ? 'За '.$year.' год' : 'Книги';
+        $title_suffix = $year ? 'За '.$year.' год' : null;
 
         self::showLayout(
-            $title,
+            trim('Книги '.mb_strtolower($title_suffix)),
 			$content,
             [
                 [
                     'name' => 'Главная',
                     'url' => Index::getUrl()
                 ],
-                $year
-                    ? [
-                        'name' => 'Книги',
-                        'url' => Books::getUrl()
-                    ]
-                    :null,
-
-				// fixme не правильно, если год не задана то "Книги", если задан "Книги / За xxxx год" где "книги" ссылка ok
+				// todo посмотри как нужно было сделать правильно
                 [
-                    'name' => $title
+                    'name' => 'Книги',
+                    'url' => $year ? Books::getUrl() : null
+                ],
+                [
+                    'name' => $title_suffix,
                 ]
             ]
         );
