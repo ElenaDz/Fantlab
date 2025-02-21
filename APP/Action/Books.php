@@ -19,7 +19,7 @@ class Books extends _Base
             ]
         );
 
-        $title = $year ? 'Книги за '.$year.' год' : 'Книги';
+        $title = $year ? 'За '.$year.' год' : 'Книги';
 
         self::showLayout(
             $title,
@@ -29,7 +29,14 @@ class Books extends _Base
                     'name' => 'Главная',
                     'url' => Index::getUrl()
                 ],
-				// fixme не правильно, если год не задана то "Книги", если задан "Книги / За xxxx год" где "книги" ссылка
+                $year
+                    ? [
+                        'name' => 'Книги',
+                        'url' => Books::getUrl()
+                    ]
+                    :null,
+
+				// fixme не правильно, если год не задана то "Книги", если задан "Книги / За xxxx год" где "книги" ссылка ok
                 [
                     'name' => $title
                 ]
@@ -39,7 +46,7 @@ class Books extends _Base
 
     public static function getUrl($year = null): string
     {
-        $url = empty($year) ? '': 'release/'.$year;
+        $url = empty($year) ? '': 'release/'.$year.'/';
 
         return '/books/'.$url;
     }
