@@ -21,13 +21,7 @@ class Books extends _Base
 
         $title = $year ? 'Книги за '.$year.' год' : 'Книги';
 
-		/**
-		 * fixme тебе не кажется плохой идеей в каждом контролере обращаться к шаблону хлебных крошек?
-		 *  перенеси это в шаблон layout ok
-	     */
-
         self::showLayout(
-			// fixme исправить, что именно писал в другом контролере ok
             $title,
 			$content,
             [
@@ -44,8 +38,6 @@ class Books extends _Base
 
     public static function getUrl($year = null): string
     {
-        // fixme здесь дублирование /books/ Мы не делаем дублирования без необходимости Избавься ok
-
         $url = empty($year) ? '': 'release/'.$year;
 
         return '/books/'.$url;

@@ -8,7 +8,7 @@ abstract class _Base
 {
     public static function showLayout($title, $content, $bread_crumbs = [])
     {
-		// fixme убрать ok
+		// fixme перемести получение этого шаблона в шаблон layout main во внутрь
         $content_bread_crumbs = Views::get(
             __DIR__ . '/../View/Blocks/BreadCrumbs.php',
             [

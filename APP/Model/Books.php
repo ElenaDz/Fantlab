@@ -56,14 +56,15 @@ class Books
         });
     }
 
+	// fixme limit 1 не пойдет, по умолчанию лимита нет null, 1 это ты в контролере задаешь
     public static function getNew($limit = 1): array
     {
         $books = Books::getAll();
 
         usort($books, function ($book1, $book2) {
-            return $book1->year<=>$book2->year;
+            return $book1->year <=> $book2->year;
         });
 
-        return array_slice($books, -$limit, $limit);
+        return array_slice($books, -1 * $limit);
     }
 }

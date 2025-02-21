@@ -17,7 +17,9 @@ use APP\Entity\Book;
 <body>
 
     <header>
-        <img class="logo" src="/Img/Книга.svg" alt="">
+
+        <img class="logo" src="/Img/Книга.svg" alt="FantLab">
+
         <nav class="nav">
             <ul>
                 <li>
@@ -26,7 +28,6 @@ use APP\Entity\Book;
                     <?php else: ?>
                         <a href="<?= \APP\Action\Index::getUrl() ?>">Главная</a>
                     <?php endif; ?>
-
                 </li>
                 <li>
                     <?php if ($_SERVER['REQUEST_URI'] === \APP\Action\Books::getUrl()): ?>
@@ -34,15 +35,17 @@ use APP\Entity\Book;
                     <?php else: ?>
                         <a href="<?= \APP\Action\Books::getUrl() ?>">Книги</a>
                     <?php endif; ?>
-
                 </li>
             </ul>
         </nav>
+
     </header>
 
     <main>
         <?php if ($_SERVER['REQUEST_URI'] !== \APP\Action\Index::getUrl()): ?>
+
             <?= $bread_crumbs?>
+
         <?php endif; ?>
 
         <?=  $content; ?>

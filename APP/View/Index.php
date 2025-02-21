@@ -1,11 +1,8 @@
 <?php
 use APP\Entity\Book;
 
-/** @var string $title */
 /** @var string $year */
 /** @var Book $books */
-
-// fixme use всегда в самом верху, это мусор который нас не интересует, он не должен мешать поэтому вверх ok
 ?>
 
 <h2>

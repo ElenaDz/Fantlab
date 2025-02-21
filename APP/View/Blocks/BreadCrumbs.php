@@ -1,10 +1,5 @@
 <?php
 /** @var array $bread_crumbs */
-
-/**
- * fixme это не layout это блок, такой как мы делали когда то в js с префиксом b_ и заведением отдельного js объекта для него например b_mini_player
- *  перенеси в папку Blocks ok
- */
 ?>
 <?php foreach ($bread_crumbs as $bread_crumb):?>
 
