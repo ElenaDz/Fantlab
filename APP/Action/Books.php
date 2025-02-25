@@ -29,7 +29,6 @@ class Books extends _Base
                     'name' => 'Главная',
                     'url' => Index::getUrl()
                 ],
-				// todo посмотри как нужно было сделать правильно
                 [
                     'name' => 'Книги',
                     'url' => $title_suffix ? Books::getUrl() : null
