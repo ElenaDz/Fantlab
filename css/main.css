@@ -54,17 +54,24 @@ a {
 }
 .book .item {
   display: flex;
+  margin: 10px 5px 0 5px;
 }
 .book .item dt {
   display: flex;
   align-items: center;
-  width: 90px;
+  width: 18%;
 }
-.book .item .release, .book .item .name {
+.book .item dd {
   display: flex;
   align-items: center;
   margin-left: 5px;
   font-size: 17px;
+  width: 80%;
+}
+
+.logo_book {
+  float: right;
+  margin: 0 15px 0 10px;
 }
 
 /*# sourceMappingURL=main.css.map */

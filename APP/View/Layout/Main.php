@@ -19,7 +19,7 @@ use SYS\Views;
 
     <header>
 
-        <img class="logo" src="/Img/Книга.svg" alt="FantLab">
+        <img class="logo" src="../../../assets/imgs/logo/Book.svg" alt="FantLab">
 
         <nav class="nav">
             <ul>

@@ -5,72 +5,60 @@ use APP\Entity\Book;
 
 class Books
 {
+    private static $pdo;
+
+    public static function getPDO(): \PDO
+    {
+        if (empty(self::$pdo)) {
+            self::$pdo = new \PDO('mysql:host=localhost;dbname=fantlab', 'root', '');
+        }
+        return self::$pdo;
+    }
+
     public static function getAll(): array
     {
-        $book1 = new Book();
+        $results = self::getPDO()->query(
+            'SELECT * FROM books'
+        );
 
-        $book1->id = 1;
-        $book1->title = 'Название книги 1';
-        $book1->year = 1998;
-
-        $book2 = new Book();
-
-        $book2->id = 2;
-        $book2->title = 'Название книги 2';
-        $book2->year = 2003;
-
-        $book3 = new Book();
-
-        $book3->id = 3;
-        $book3->title = 'Название книги 3';
-        $book3->year = 2003;
-
-        $book4 = new Book();
-
-        $book4->id = 4;
-        $book4->title = 'Название книги 4';
-        $book4->year = 2002;
-
-
-        return [
-            $book1->id =>$book1,
-            $book2->id =>$book2,
-            $book3->id =>$book3,
-            $book4->id =>$book4
-        ];
+        return $results->fetchAll(
+          \PDO::FETCH_CLASS,
+            Book::class
+        );
     }
 
     public static function getById(int $id): Book
     {
-        $books = Books::getAll();
+        $results = self::getPDO()->query(
+            'SELECT * FROM books WHERE id ='.((int)$id)
+        );
 
-        return $books[$id];
+        return $results->fetchObject(
+            Book::class
+        );
     }
 
     public static function getByYear(int $year): array
     {
-        $books = Books::getAll();
+        $results = self::getPDO()->query(
+            'SELECT * FROM books WHERE year ='.((int)$year)
+        );
 
-        return array_filter($books, function ($book) use ($year) {
-            return $book->year === $year ;
-        });
+        return $results->fetchAll(
+            \PDO::FETCH_CLASS,
+            Book::class
+        );
     }
 
     public static function getNew($limit = null): array
     {
-        $books = Books::getAll();
-        $year = null;
+        $results = self::getPDO()->query(
+            'SELECT * FROM books ORDER BY YEAR DESC LIMIT '.((int)$limit)
+        );
 
-        foreach ($books as $book) {
-            if ($book->year >= $year ) {
-                $year = $book->year;
-            }
-        }
-
-        $books = array_filter($books, function ($book) use ($year) {
-            return $book->year === $year;
-        });
-
-        return array_slice($books, -1 * $limit);
+         return $results->fetchAll(
+             \PDO::FETCH_CLASS,
+             Book::class
+         );
     }
 }

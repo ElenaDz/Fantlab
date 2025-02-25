@@ -9,6 +9,7 @@ class Index extends _Base
     {
         $books = \APP\Model\Books::getNew(1);
 
+
         $content = Views::get(
             __DIR__ . '/../View/Index.php',
             [
