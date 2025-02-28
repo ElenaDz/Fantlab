@@ -5,7 +5,7 @@ use APP\Entity\Book;
 ?>
 <?php if ($book->cover):?>
     <img class="logo_book" src="/assets/imgs/covers/<?= $book->id; ?>.jpg"
-         alt="Обложка книги Азека Азимова <?= $book->title; ?>"
+         alt="Обложка книги <?= $book->title; ?>"
     >
 <?php endif; ?>
 
@@ -23,6 +23,11 @@ use APP\Entity\Book;
     </div>
 
     <div class="item">
+        <dt>Автор:</dt>
+        <dd class="author_name"><?= \APP\Model\Books::getNameAuthorById($book->id); ?></dd>
+    </div>
+
+    <div class="item">
         <dt>Тип:</dt>
         <dd class="type"><?= $book->type; ?></dd>
     </div>
@@ -36,7 +41,5 @@ use APP\Entity\Book;
         <dt><b>Описание:</b></dt>
         <dd class="description"><?= $book->description; ?></dd>
     </div>
-    
-
 </dl>
 

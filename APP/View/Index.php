@@ -3,6 +3,7 @@ use APP\Entity\Book;
 
 /** @var string $year */
 /** @var Book $books */
+
 ?>
 
 <h2>
@@ -14,6 +15,9 @@ use APP\Entity\Book;
 <ul>
     <?php foreach ($books as $book):  ?>
     <li>
+        <a href="<?= \APP\Action\Author::getUrl(\APP\Model\Books::getNameAuthorById($book->id))?>">
+            <?= \APP\Model\Books::getNameAuthorById($book->id) ?>
+        </a> -
         <a href="<?= \APP\Action\Book::getUrl($book) ?>">
             <?= $book->title ?>
         </a>

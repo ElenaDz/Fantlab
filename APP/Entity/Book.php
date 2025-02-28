@@ -9,4 +9,6 @@ class Book
     public $year;
     public $description;
     public $cover;
+    public $author_id;
+    public $author_name;
 }

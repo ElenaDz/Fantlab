@@ -52,28 +52,28 @@ a {
 
 .book {
   margin: 10px 0 0 10px;
+}
+.item {
+  display: flex;
+  margin: 10px 5px 0 5px;
 
-  .item {
+  dt {
     display: flex;
-    margin: 10px 5px 0 5px;
+    align-items: baseline;
+    width: 18%;
 
-    dt {
-      display: flex;
-      align-items: center;
-      width: 18%;
-
-    }
-    dd {
-      display: flex;
-      align-items: center;
-      margin-left: 5px;
-      font-size: 17px;
-      width: 80%;
-    }
+  }
+  dd {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    font-size: 17px;
+    width: 80%;
   }
 }
 
-.logo_book {
+
+.logo_book, .portrait {
   float: right;
   margin: 0 15px 0 10px;
 }

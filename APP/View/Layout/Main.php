@@ -37,6 +37,13 @@ use SYS\Views;
                         <a href="<?= \APP\Action\Books::getUrl() ?>">Книги</a>
                     <?php endif; ?>
                 </li>
+                <li>
+                    <?php if ($_SERVER['REQUEST_URI'] === \APP\Action\Authors::getUrl()): ?>
+                        Авторы
+                    <?php else: ?>
+                        <a href="<?= \APP\Action\Authors::getUrl() ?>">Авторы</a>
+                    <?php endif; ?>
+                </li>
             </ul>
         </nav>
 

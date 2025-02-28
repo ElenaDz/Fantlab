@@ -1,6 +1,7 @@
 <?php
 namespace APP\Model;
 
+use APP\Entity\Author;
 use APP\Entity\Book;
 
 class Books
@@ -18,7 +19,7 @@ class Books
     public static function getAll(): array
     {
         $results = self::getPDO()->query(
-            'SELECT * FROM books'
+            'SELECT books.*, authors.name AS author_name FROM books Left JOIN authors ON books.author_id=authors.id;'
         );
 
         return $results->fetchAll(
@@ -35,6 +36,24 @@ class Books
 
         return $results->fetchObject(
             Book::class
+        );
+    }
+
+    public static function getNameAuthorById(int $id): string
+    {
+        return self::getPDO()->query(
+            'SELECT name FROM authors JOIN books ON authors.id=books.author_id WHERE books.id ='.((int)$id)
+        )->fetchColumn();
+    }
+
+    public static function getAuthorById(int $id): Author
+    {
+        $results = self::getPDO()->query(
+            'SELECT * FROM authors JOIN books ON authors.id=books.author_id WHERE books.id ='.((int)$id)
+        );
+
+        return $results->fetchObject(
+            Author::class
         );
     }
 
@@ -61,4 +80,30 @@ class Books
              Book::class
          );
     }
+
+    public static function getCountBooksByAuthor($author): int
+    {
+
+        $results = self::getPDO()->query(
+            'SELECT * FROM books WHERE author_id ='.((int)$author->id)
+        );
+
+        return count($results->fetchAll(
+            \PDO::FETCH_CLASS,
+            Book::class
+        ));
+    }
+
+    public static function getBooksByAuthor($author): array
+    {
+        $results = self::getPDO()->query(
+            'SELECT * FROM books WHERE author_id ='.((int)$author->id).' ORDER BY books.year DESC'
+        );
+
+        return $results->fetchAll(
+            \PDO::FETCH_CLASS,
+            Book::class
+        );
+    }
+
 }

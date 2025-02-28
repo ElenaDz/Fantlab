@@ -28,6 +28,10 @@ class Book extends _Base
                     'url' => Books::getUrl()
                 ],
                 [
+                    'name' => \APP\Model\Books::getNameAuthorById($book->id) ,
+                    'url' => Author::getUrl(\APP\Model\Books::getNameAuthorById($book->id))
+                ],
+                [
                     'name' => $book->title
                 ]
             ]
