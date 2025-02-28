@@ -31,7 +31,8 @@ class Authors extends \APP\Entity\Author
 
     public static function getByName($name): Author
     {
-
+		// fixme запрос не защищен от sql инъекции, нужно использовать quote чтобы защититься
+	    // https://www.php.net/manual/ru/pdo.quote.php
         $results = self::getPDO()->query(
             'SELECT * FROM authors WHERE name ="'.$name.'"'
         );

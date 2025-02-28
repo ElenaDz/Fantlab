@@ -26,6 +26,7 @@ use SYS\Views;
         <dd class="birthday"><?= $author->birthday; ?></dd>
     </div>
 
+    <!-- fixme если если еще жив этот пункт не показываем -->
     <div class="item">
         <dt>Умер:</dt>
         <dd class="death"><?= $author->death; ?></dd>
@@ -33,10 +34,10 @@ use SYS\Views;
 </dl>
 
 <?=
-Views::get(
-    __DIR__ . '/../View/Books.php',
-    [
-        'books' => $books
-    ]
-);
+    Views::get(
+        __DIR__ . '/../View/Books.php',
+        [
+            'books' => $books
+        ]
+    );
 ?>

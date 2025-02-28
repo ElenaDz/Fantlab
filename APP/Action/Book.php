@@ -28,6 +28,10 @@ class Book extends _Base
                     'url' => Books::getUrl()
                 ],
                 [
+					/**
+					 * fixme каждое обращение к модели это sql запрос, это медленная тяжелая процедура,
+					 *  их нужно стараться делать как можно меньше, а тут ты делаешь 2 раза одно и тоже
+					 */
                     'name' => \APP\Model\Books::getNameAuthorById($book->id) ,
                     'url' => Author::getUrl(\APP\Model\Books::getNameAuthorById($book->id))
                 ],

@@ -9,7 +9,6 @@ use APP\Entity\Book;
 
 <h2>
     <?= empty($title_year) ? 'Книги' : 'Книги за '.$title_year.' год'; ?>
-
 </h2>
 
 <ul>
@@ -17,9 +16,11 @@ use APP\Entity\Book;
         <li>
 
             <?php if ($is_show_authors_name ): ?>
+
                 <a href="<?= \APP\Action\Author::getUrl($book->author_name) ?>">
                     <?= $book->author_name; ?>
                 </a> -
+
             <?php endif;?>
 
             <a href="<?= \APP\Action\Book::getUrl($book) ?>">

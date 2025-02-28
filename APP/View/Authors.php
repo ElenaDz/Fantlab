@@ -11,7 +11,8 @@ use APP\Entity\Author;
         <li>
             <a href="<?= \APP\Action\Author::getUrl($author->name) ?>">
                 <?= $author->name; ?>
-
+                <!-- fixme убрать из шаблона обращение к модели + нельзя обращаться к БД для каждого автора отдельно
+                           их может быть и 100, один запрос для всех авторов-->
                 (Книг: <?= \APP\Model\Books::getCountBooksByAuthor($author) ?>)
             </a>
         </li>
