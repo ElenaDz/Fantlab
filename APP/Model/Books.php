@@ -31,7 +31,10 @@ class Books
     public static function getById(int $id): Book
     {
         $results = self::getPDO()->query(
-            'SELECT * FROM books WHERE id ='.((int)$id)
+            'SELECT books.*, authors.name as author_name
+                    FROM books
+                    JOIN  authors on authors.id = books.author_id
+                    where books.id = '.((int)$id)
         );
 
         return $results->fetchObject(
@@ -47,22 +50,10 @@ class Books
 	            ->fetchColumn();
     }
 
-	// fixme не используется, удалить
-    public static function getAuthorById(int $id): Author
-    {
-        $results = self::getPDO()->query(
-            'SELECT * FROM authors JOIN books ON authors.id=books.author_id WHERE books.id ='.((int)$id)
-        );
-
-        return $results->fetchObject(
-            Author::class
-        );
-    }
-
     public static function getByYear(int $year): array
     {
         $results = self::getPDO()->query(
-            'SELECT * FROM books WHERE year ='.((int)$year)
+            'SELECT books.*, authors.name AS author_name FROM books JOIN authors ON books.author_id=authors.id WHERE year ='.((int)$year)
         );
 
         return $results->fetchAll(
@@ -83,25 +74,21 @@ class Books
          );
     }
 
-    public static function getCountBooksByAuthor($author): int
+    public static function getCountBooksByAuthorId($author_id): int
     {
-        $results = self::getPDO()->query(
-            'SELECT * FROM books WHERE author_id ='.((int)$author->id)
-        );
+        return self::getPDO()->query(
+            'SELECT COUNT(id) FROM books WHERE author_id = '.((int)$author_id).' GROUP BY author_id'
+        )->fetchColumn();
 
-		// fixme нет так нельзя, нужно пользоваться sql, используй join, group by, count
-        return count($results->fetchAll(
-            \PDO::FETCH_CLASS,
-            Book::class
-        ));
+		// fixme нет так нельзя, нужно пользоваться sql, используй join, group by, count ok
     }
 
-	// fixme переименовать в getByAuthor так как это класс Books не нужно писать это слово снова и так понятно
-	// fixme зачем здесь передавать объект автора если нужен только его id? передавай Id
-    public static function getBooksByAuthor($author): array
+	// fixme переименовать в getByAuthor так как это класс Books не нужно писать это слово снова и так понятно ok
+	// fixme зачем здесь передавать объект автора если нужен только его id? передавай Id ok
+    public static function getByAuthorId($author_id): array
     {
         $results = self::getPDO()->query(
-            'SELECT * FROM books WHERE author_id ='.((int)$author->id).' ORDER BY books.year DESC'
+            'SELECT * FROM books WHERE author_id ='.((int)$author_id).' ORDER BY books.year DESC'
         );
 
         return $results->fetchAll(

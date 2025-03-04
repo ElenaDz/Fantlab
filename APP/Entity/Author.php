@@ -10,4 +10,5 @@ class Author
     public $death;
     public $country;
     public $cover;
+    public $count_book;
 }

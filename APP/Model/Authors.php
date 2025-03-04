@@ -20,7 +20,10 @@ class Authors extends \APP\Entity\Author
     public static function getAll(): array
     {
         $results = self::getPDO()->query(
-            'SELECT * FROM authors'
+            'SELECT authors.* , count(authors.id) as count_book
+                    FROM authors
+                    JOIN books  on authors.id = books.author_id
+                    GROUP BY  authors.id'
         );
 
         return $results->fetchAll(
@@ -31,10 +34,12 @@ class Authors extends \APP\Entity\Author
 
     public static function getByName($name): Author
     {
-		// fixme запрос не защищен от sql инъекции, нужно использовать quote чтобы защититься
+        $pdo = self::getPDO();
+
+		// fixme запрос не защищен от sql инъекции, нужно использовать quote чтобы защититься ok
 	    // https://www.php.net/manual/ru/pdo.quote.php
-        $results = self::getPDO()->query(
-            'SELECT * FROM authors WHERE name ="'.$name.'"'
+        $results = $pdo->query (
+            'SELECT * FROM authors WHERE name ='. $pdo->quote($name)
         );
 
         return $results->fetchObject(

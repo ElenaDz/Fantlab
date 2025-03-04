@@ -26,11 +26,13 @@ use SYS\Views;
         <dd class="birthday"><?= $author->birthday; ?></dd>
     </div>
 
-    <!-- fixme если если еще жив этот пункт не показываем -->
+    <!-- fixme если если еще жив этот пункт не показываем ok-->
+    <?php if (!empty($author->death)):?>
     <div class="item">
         <dt>Умер:</dt>
         <dd class="death"><?= $author->death; ?></dd>
     </div>
+    <?php endif; ?>
 </dl>
 
 <?=

@@ -30,10 +30,10 @@ class Book extends _Base
                 [
 					/**
 					 * fixme каждое обращение к модели это sql запрос, это медленная тяжелая процедура,
-					 *  их нужно стараться делать как можно меньше, а тут ты делаешь 2 раза одно и тоже
+					 *  их нужно стараться делать как можно меньше, а тут ты делаешь 2 раза одно и тоже ok
 					 */
-                    'name' => \APP\Model\Books::getNameAuthorById($book->id) ,
-                    'url' => Author::getUrl(\APP\Model\Books::getNameAuthorById($book->id))
+                    'name' => $book->author_name,
+                    'url' => Author::getUrl($book->author_name)
                 ],
                 [
                     'name' => $book->title

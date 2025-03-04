@@ -9,7 +9,7 @@ class Author extends _Base
     public static function index($name)
     {
         $author = \APP\Model\Authors::getByName($name);
-        $books = \APP\Model\Books::getBooksByAuthor($author);
+        $books = \APP\Model\Books::getByAuthorId($author->id);
 
         $content = Views::get(
             __DIR__.'/../View/Author.php',
@@ -18,7 +18,7 @@ class Author extends _Base
                 'books' => $books
             ]
         );
-
+        
         self::showLayout(
             $author->name,
             $content,

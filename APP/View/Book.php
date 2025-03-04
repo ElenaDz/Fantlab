@@ -24,9 +24,9 @@ use APP\Entity\Book;
 
     <div class="item">
         <dt>Автор:</dt>
-        <!-- fixme нельзя обращаться из шаблонов к моделям это нужно делать в контроллере -->
-        <!-- todo здесь должна быть ссылка на страницу автора книги -->
-        <dd class="author_name"><?= \APP\Model\Books::getNameAuthorById($book->id); ?></dd>
+        <!-- fixme нельзя обращаться из шаблонов к моделям это нужно делать в контроллере ok-->
+        <!-- todo здесь должна быть ссылка на страницу автора книги ok-->
+        <dd class="author_name"><a href="<?= \APP\Action\Author::getUrl($book->author_name) ?>"><?= $book->author_name; ?></a></dd>
     </div>
 
     <div class="item">
@@ -36,8 +36,8 @@ use APP\Entity\Book;
 
     <div class="item">
         <dt>Год выхода:</dt>
-        <!-- todo год должен быть ссылкой на книги за этот год -->
-        <dd class="release"><?= $book->year; ?></dd>
+        <!-- todo год должен быть ссылкой на книги за этот год  ok-->
+        <dd class="release"><a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a></dd>
     </div>
     
     <div class="item">
