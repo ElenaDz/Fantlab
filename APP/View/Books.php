@@ -3,7 +3,7 @@ use APP\Entity\Book;
 
 /** @var Book[] $books */
 /** @var string $title_year */
-
+/** @var boolean $is_show_authors_name */
 
 ?>
 
@@ -15,7 +15,7 @@ use APP\Entity\Book;
     <?php foreach ($books as $book):  ?>
         <li>
 
-            <?php if (!empty($title_year) ): ?>
+            <?php if (!empty($title_year)  || $is_show_authors_name ): ?>
                 <a href="<?= \APP\Action\Author::getUrl($book->author_name) ?>">
                     <?= $book->author_name; ?>
                 </a> -

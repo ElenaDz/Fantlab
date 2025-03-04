@@ -15,7 +15,8 @@ class Books extends _Base
             __DIR__.'/../View/Books.php',
             [
                 'books' => $books,
-                'title_year' => $year
+                'title_year' => $year,
+                'is_show_authors_name' => true
             ]
         );
 
