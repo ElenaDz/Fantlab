@@ -7,6 +7,7 @@ class Books extends _Base
 {
     public static function index($year = null)
     {
+		// fixme если книги за заданный год не найдены, нужно выдать ошибку 404
 	    $books = empty($year)
 		    ? \APP\Model\Books::getAll()
 		    : \APP\Model\Books::getByYear($year);

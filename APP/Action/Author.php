@@ -8,6 +8,7 @@ class Author extends _Base
 {
     public static function index($name)
     {
+	    // fixme если автор не найден нужно выдать ошибку 404 страница не найдена (без редиректа)
         $author = \APP\Model\Authors::getByName($name);
         $books = \APP\Model\Books::getByAuthorId($author->id);
 

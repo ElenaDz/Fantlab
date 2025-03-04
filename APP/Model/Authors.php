@@ -21,9 +21,9 @@ class Authors extends \APP\Entity\Author
     {
         $results = self::getPDO()->query(
             'SELECT authors.* , count(authors.id) as count_book
-                    FROM authors
-                    JOIN books  on authors.id = books.author_id
-                    GROUP BY  authors.id'
+			FROM authors
+            JOIN books on authors.id = books.author_id
+            GROUP BY authors.id'
         );
 
         return $results->fetchAll(
@@ -36,8 +36,6 @@ class Authors extends \APP\Entity\Author
     {
         $pdo = self::getPDO();
 
-		// fixme запрос не защищен от sql инъекции, нужно использовать quote чтобы защититься ok
-	    // https://www.php.net/manual/ru/pdo.quote.php
         $results = $pdo->query (
             'SELECT * FROM authors WHERE name ='. $pdo->quote($name)
         );

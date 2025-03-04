@@ -24,8 +24,6 @@ use APP\Entity\Book;
 
     <div class="item">
         <dt>Автор:</dt>
-        <!-- fixme нельзя обращаться из шаблонов к моделям это нужно делать в контроллере ok-->
-        <!-- todo здесь должна быть ссылка на страницу автора книги ok-->
         <dd class="author_name"><a href="<?= \APP\Action\Author::getUrl($book->author_name) ?>"><?= $book->author_name; ?></a></dd>
     </div>
 
@@ -36,8 +34,11 @@ use APP\Entity\Book;
 
     <div class="item">
         <dt>Год выхода:</dt>
-        <!-- todo год должен быть ссылкой на книги за этот год  ok-->
-        <dd class="release"><a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a></dd>
+        <dd class="release">
+            <!-- todo добавь возраст автора на момент написания книги, как здесь https://allking.club/books/Rattlesnakes/
+                  используй DateTime diff для расчета возраста и найти функцию которая выбирает форму слова в зависимости от числа (год, года, лет) -->
+            <a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a>
+        </dd>
     </div>
     
     <div class="item">

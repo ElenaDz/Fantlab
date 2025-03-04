@@ -6,6 +6,7 @@ class Book extends _Base
 {
     public static function index($id)
     {
+		// fixme если книга не найдена нужно выдать ошибку 404 страница не найдена (без редиректа)
         $book = \APP\Model\Books::getById($id);
 
         $content = Views::get(
@@ -28,10 +29,6 @@ class Book extends _Base
                     'url' => Books::getUrl()
                 ],
                 [
-					/**
-					 * fixme каждое обращение к модели это sql запрос, это медленная тяжелая процедура,
-					 *  их нужно стараться делать как можно меньше, а тут ты делаешь 2 раза одно и тоже ok
-					 */
                     'name' => $book->author_name,
                     'url' => Author::getUrl($book->author_name)
                 ],

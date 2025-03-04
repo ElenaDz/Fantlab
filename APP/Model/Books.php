@@ -4,10 +4,14 @@ namespace APP\Model;
 use APP\Entity\Author;
 use APP\Entity\Book;
 
+// todo добавь индексы в таблица БД на основе анализа запросов которые мы уже делаем к БД
+//  прочитать про индексы можно здесь https://php.zone/php-i-mysql-s-nulya/indeksy-v-mysql
+
 class Books
 {
     private static $pdo;
 
+	// fixme можно сделать private
     public static function getPDO(): \PDO
     {
         if (empty(self::$pdo)) {
@@ -44,10 +48,11 @@ class Books
 
     public static function getNameAuthorById(int $id): string
     {
-        return self::getPDO()->query(
+        return self::getPDO()
+	        ->query(
 	            'SELECT name FROM authors JOIN books ON authors.id=books.author_id WHERE books.id ='.((int)$id)
 	        )
-	            ->fetchColumn();
+	        ->fetchColumn();
     }
 
     public static function getByYear(int $year): array
@@ -74,27 +79,17 @@ class Books
          );
     }
 
-    public static function getCountBooksByAuthorId($author_id): int
-    {
-        return self::getPDO()->query(
-            'SELECT COUNT(id) FROM books WHERE author_id = '.((int)$author_id).' GROUP BY author_id'
-        )->fetchColumn();
 
-		// fixme нет так нельзя, нужно пользоваться sql, используй join, group by, count ok
-    }
-
-	// fixme переименовать в getByAuthor так как это класс Books не нужно писать это слово снова и так понятно ok
-	// fixme зачем здесь передавать объект автора если нужен только его id? передавай Id ok
     public static function getByAuthorId($author_id): array
     {
-        $results = self::getPDO()->query(
-            'SELECT * FROM books WHERE author_id ='.((int)$author_id).' ORDER BY books.year DESC'
-        );
+        $results = self::getPDO()
+	        ->query(
+	            'SELECT * FROM books WHERE author_id ='.((int) $author_id).' ORDER BY books.year DESC'
+	        );
 
         return $results->fetchAll(
             \PDO::FETCH_CLASS,
             Book::class
         );
     }
-
 }
