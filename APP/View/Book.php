@@ -36,8 +36,10 @@ use APP\Entity\Book;
         <dt>Год выхода:</dt>
         <dd class="release">
             <!-- todo добавь возраст автора на момент написания книги, как здесь https://allking.club/books/Rattlesnakes/
-                  используй DateTime diff для расчета возраста и найти функцию которая выбирает форму слова в зависимости от числа (год, года, лет) -->
-            <a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a>
+                  используй DateTime diff для расчета возраста и найти функцию которая выбирает форму слова в зависимости от числа (год, года, лет) ok
+                   (рассчёт сделала в БД, немного другим способом)-->
+            <a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a> &nbsp
+            (<?= $book->getAuthorAge() ?>)
         </dd>
     </div>
     

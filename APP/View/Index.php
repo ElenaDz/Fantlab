@@ -15,12 +15,13 @@ use APP\Entity\Book;
 <ul>
     <?php foreach ($books as $book):  ?>
     <li>
-        <!-- fixme обращение к модели в шаблоне не допустимо -->
-        <a href="<?= \APP\Action\Author::getUrl(\APP\Model\Books::getNameAuthorById($book->id))?>">
-            <!-- fixme обращение к модели в шаблоне не допустимо -->
-            <?= \APP\Model\Books::getNameAuthorById($book->id) ?>
+        <!--
+        fixme обращение к модели в шаблоне не допустимо ok-->
+        <a href="<?= \APP\Action\Author::getUrl($book->author_name)?>">
+            <!-- fixme обращение к модели в шаблоне не допустимо ok-->
+            <?= $book->author_name ?>
         </a> -
-        <a href="<?= \APP\Action\Book::getUrl($book) ?>">
+        <a href="<?= \APP\Action\Book::getUrl($book->id) ?>">
             <?= $book->title ?>
         </a>
     </li>

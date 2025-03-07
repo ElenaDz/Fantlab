@@ -21,7 +21,7 @@ use APP\Entity\Book;
                 </a> -
             <?php endif;?>
 
-            <a href="<?= \APP\Action\Book::getUrl($book) ?>">
+            <a href="<?= \APP\Action\Book::getUrl($book->id) ?>">
                 <?= $book->title; ?>
                 (<?= $book->year; ?>)
             </a>

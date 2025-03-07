@@ -1,18 +1,17 @@
 <?php
 namespace APP\Model;
 
-use APP\Entity\Author;
 use APP\Entity\Book;
 
 // todo добавь индексы в таблица БД на основе анализа запросов которые мы уже делаем к БД
-//  прочитать про индексы можно здесь https://php.zone/php-i-mysql-s-nulya/indeksy-v-mysql
+//  прочитать про индексы можно здесь https://php.zone/php-i-mysql-s-nulya/indeksy-v-mysql OK
 
 class Books
 {
     private static $pdo;
 
-	// fixme можно сделать private
-    public static function getPDO(): \PDO
+	// fixme можно сделать private ok
+    private static function getPDO(): \PDO
     {
         if (empty(self::$pdo)) {
             self::$pdo = new \PDO('mysql:host=localhost;dbname=fantlab', 'root', '');
@@ -32,10 +31,15 @@ class Books
         );
     }
 
-    public static function getById(int $id): Book
+    /**
+     * @param int $id
+     * @return boolean|Book
+     */
+    public static function getById(int $id)
     {
         $results = self::getPDO()->query(
-            'SELECT books.*, authors.name as author_name
+            'SELECT books.*, authors.name as author_name,
+       CAST(COALESCE(books.year, 0) AS UNSIGNED) - CAST(COALESCE(YEAR(authors.birthday), 0) AS UNSIGNED) AS author_age
                     FROM books
                     JOIN  authors on authors.id = books.author_id
                     where books.id = '.((int)$id)
@@ -44,15 +48,6 @@ class Books
         return $results->fetchObject(
             Book::class
         );
-    }
-
-    public static function getNameAuthorById(int $id): string
-    {
-        return self::getPDO()
-	        ->query(
-	            'SELECT name FROM authors JOIN books ON authors.id=books.author_id WHERE books.id ='.((int)$id)
-	        )
-	        ->fetchColumn();
     }
 
     public static function getByYear(int $year): array
@@ -67,10 +62,16 @@ class Books
         );
     }
 
-    public static function getNew($limit = null): array
+    public static function getNew(int $limit = NULL): array
     {
+        $limit = empty($limit) ? '' : 'LIMIT '.$limit;
+
         $results = self::getPDO()->query(
-            'SELECT * FROM books ORDER BY YEAR DESC LIMIT '.((int)$limit)
+            'SELECT books.*, authors.name AS author_name 
+                    FROM books 
+                    JOIN authors ON books.author_id=authors.id 
+                    WHERE books.year = (SELECT MAX(year) FROM books)
+                    ORDER BY YEAR DESC '.$limit
         );
 
          return $results->fetchAll(
@@ -79,11 +80,9 @@ class Books
          );
     }
 
-
     public static function getByAuthorId($author_id): array
     {
-        $results = self::getPDO()
-	        ->query(
+        $results = self::getPDO()->query(
 	            'SELECT * FROM books WHERE author_id ='.((int) $author_id).' ORDER BY books.year DESC'
 	        );
 

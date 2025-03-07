@@ -32,7 +32,11 @@ class Authors extends \APP\Entity\Author
         );
     }
 
-    public static function getByName($name): Author
+    /**
+     * @param $name
+     * @return boolean|Author
+     */
+    public static function getByName($name)
     {
         $pdo = self::getPDO();
 

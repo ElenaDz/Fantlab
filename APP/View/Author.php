@@ -25,19 +25,17 @@ use SYS\Views;
         <dt>Родился:</dt>
         <dd class="birthday">
             <?=
-                // todo отформатируй обе даты с помощью datetime format ДД.ММ.ГГГГ
-                $author->birthday;
+                // todo отформатируй обе даты с помощью datetime format ДД.ММ.ГГГГ ok
+                $author->getBirthday();
             ?>
         </dd>
     </div>
 
-    <?php if ( ! empty($author->death)):?>
-
-        <div class="item">
-            <dt>Умер:</dt>
-            <dd class="death"><?= $author->death; ?></dd>
-        </div>
-
+    <?php if ( ! empty($author->getDeath())):?>
+            <div class="item">
+                <dt>Умер:</dt>
+                <dd class="death"><?= $author->getDeath(); ?></dd>
+            </div>
     <?php endif; ?>
 </dl>
 
