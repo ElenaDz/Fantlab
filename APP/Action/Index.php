@@ -7,8 +7,7 @@ class Index extends _Base
 {
     public static function index()
     {
-		// fixme если не задавать limit не возвращает не одной книги а должен вернуть все ok
-        $books = \APP\Model\Books::getNew();
+        $books = \APP\Model\Books::getNew(1);
 
         $content = Views::get(
             __DIR__ . '/../View/Index.php',

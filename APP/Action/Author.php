@@ -4,21 +4,22 @@ namespace APP\Action;
 
 use DateTimeImmutable;
 use Exception;
-use SYS\Erorr;
+use SYS\Error;
 use SYS\Views;
 
 class Author extends _Base
 {
     public static function index($name)
     {
-	    // fixme если автор не найден нужно выдать ошибку 404 страница не найдена (без редиректа) ok
         $author = \APP\Model\Authors::getByName($name);
+		// fixme если автор не найден нужно ли выполнять эту строку? нижу опусти ее
         $books = \APP\Model\Books::getByAuthorId($author->id);
 
         if (empty($author)) {
             $code_not_found = 404;
 
-            Erorr::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".$name." не найдена");
+			// fixme не смущает тебя что у тебя везде повторяется один и тот же текст? может быть избавиться от повторения
+            Error::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".$name." не найдена");
         }
 
         $content = Views::get(

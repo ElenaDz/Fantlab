@@ -2,7 +2,7 @@
 
 namespace SYS;
 
-class Erorr
+class Error
 {
     public static function index($code, $massage)
     {

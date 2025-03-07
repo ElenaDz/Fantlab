@@ -1,22 +1,22 @@
 <?php
 namespace APP\Action;
 
-use SYS\Erorr;
+use SYS\Error;
 use SYS\Views;
 
 class Books extends _Base
 {
     public static function index($year = null)
     {
-		// fixme если книги за заданный год не найдены, нужно выдать ошибку 404 ok
 	    $books = empty($year)
 		    ? \APP\Model\Books::getAll()
 		    : \APP\Model\Books::getByYear($year);
 
+		// fixme подумай о ситуации когда не добавлено ни одной книги и год не задан Ошибки 404 не должно быть
         if (empty($books)) {
             $code_not_found = 404;
 
-            Erorr::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".self::getUrl($year)." не найдена");
+            Error::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".self::getUrl($year)." не найдена");
         }
 
         $content = Views::get(

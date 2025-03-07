@@ -37,6 +37,8 @@ class Routing
             }
         }
 
+		// todo используй тут
+	    /** @see \SYS\Error::index */
         $code_not_found = 404;
 
         http_response_code($code_not_found);

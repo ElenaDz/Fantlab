@@ -24,10 +24,7 @@ use SYS\Views;
     <div class="item">
         <dt>Родился:</dt>
         <dd class="birthday">
-            <?=
-                // todo отформатируй обе даты с помощью datetime format ДД.ММ.ГГГГ ok
-                $author->getBirthday();
-            ?>
+            <?= $author->getBirthday(); ?>
         </dd>
     </div>
 

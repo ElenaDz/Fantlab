@@ -3,14 +3,10 @@ namespace APP\Model;
 
 use APP\Entity\Book;
 
-// todo добавь индексы в таблица БД на основе анализа запросов которые мы уже делаем к БД
-//  прочитать про индексы можно здесь https://php.zone/php-i-mysql-s-nulya/indeksy-v-mysql OK
-
 class Books
 {
     private static $pdo;
 
-	// fixme можно сделать private ok
     private static function getPDO(): \PDO
     {
         if (empty(self::$pdo)) {
@@ -39,7 +35,7 @@ class Books
     {
         $results = self::getPDO()->query(
             'SELECT books.*, authors.name as author_name,
-       CAST(COALESCE(books.year, 0) AS UNSIGNED) - CAST(COALESCE(YEAR(authors.birthday), 0) AS UNSIGNED) AS author_age
+       				CAST(COALESCE(books.year, 0) AS UNSIGNED) - CAST(COALESCE(YEAR(authors.birthday), 0) AS UNSIGNED) AS author_age
                     FROM books
                     JOIN  authors on authors.id = books.author_id
                     where books.id = '.((int)$id)
