@@ -17,6 +17,27 @@ class Authors extends \APP\Entity\Author
         return self::$pdo;
     }
 
+    public static function add($name)
+    {
+        $prepare = self::getPDO()->prepare(
+            'INSERT INTO 
+                    authors 
+                    (`name`, `birthday`, `death`, `country`, `cover`) 
+                VALUES 
+                    (:name, :birthday, :death, :country, :cover)'
+        );
+
+        $prepare->execute([
+            'name' => $name,
+            'birthday' => '1990-01-01',
+            'death' => '1999-01-01',
+            'country' => 'США',
+            'cover' => '0'
+        ]);
+
+        return  self::getPDO()->lastInsertId();
+    }
+
     public static function getAll(): array
     {
         $results = self::getPDO()->query(

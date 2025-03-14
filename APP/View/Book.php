@@ -3,23 +3,23 @@ use APP\Entity\Book;
 
 /** @var Book $book */
 ?>
-<?php if ($book->cover):?>
-    <img class="logo_book" src="/assets/imgs/covers/<?= $book->id; ?>.jpg"
-         alt="Обложка книги <?= $book->title; ?>"
+<?php if ($book->getCover()):?>
+    <img class="logo_book" src="/assets/imgs/covers/<?= $book->getId(); ?>.jpg"
+         alt="Обложка книги <?= $book->getTitle(); ?>"
     >
 <?php endif; ?>
 
-<h1><?= $book->title; ?></h1>
+<h1><?= $book->getTitle(); ?></h1>
 
 <dl class="book">
     <div class="item">
         <dt>Название:</dt>
-        <dd class="name"><?= $book->title; ?></dd>
+        <dd class="name"><?= $book->getTitle(); ?></dd>
     </div>
 
     <div class="item">
         <dt>Оригинальное название:</dt>
-        <dd class="title_original"><?= $book->title_original; ?></dd>
+        <dd class="title_original"><?= $book->getTitleOriginal(); ?></dd>
     </div>
 
     <div class="item">
@@ -29,22 +29,38 @@ use APP\Entity\Book;
 
     <div class="item">
         <dt>Тип:</dt>
-        <dd class="type"><?= $book->type; ?></dd>
+        <dd class="type"><?= $book->getType(); ?></dd>
     </div>
 
     <div class="item">
         <dt>Год выхода:</dt>
         <dd class="release">
             <!-- todo добавь возраст автора на момент написания книги, как здесь https://allking.club/books/Rattlesnakes/
-                  используй DateTime diff для расчета возраста -->
-            <a href="<?= \APP\Action\Books::getUrl($book->year) ?>"><?= $book->year; ?></a> &nbsp
+                  используй DateTime diff для расчета возраста ok-->
+            <a href="<?= \APP\Action\Books::getUrl($book->getYear()) ?>"><?= $book->getYear(); ?></a> &nbsp
             (<?= $book->getAuthorAge() ?>)
         </dd>
     </div>
     
     <div class="item">
         <dt><b>Описание:</b></dt>
-        <dd class="description"><?= $book->description; ?></dd>
+        <dd class="description"><?= $book->getDescription(); ?></dd>
     </div>
 </dl>
+
+<form class="update_book" action="<?= \APP\Action\Admin\BookUpdate::getUrl()?>" method="post">
+    <label>
+        <input type="hidden" name="id" value="<?= $book->getId()?>">
+    </label>
+    <button>Изменить книгу</button>
+</form >
+
+<form class="delete_book" action="<?= \APP\Action\Admin\BookDelete::getUrl()?>" method="post">
+    <label>
+        <input type="hidden" name="id" value="<?= $book->getId()?>">
+    </label>
+    <button>Удалить книгу</button>
+</form>
+
+
 

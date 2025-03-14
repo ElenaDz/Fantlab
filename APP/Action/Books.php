@@ -12,11 +12,11 @@ class Books extends _Base
 		    ? \APP\Model\Books::getAll()
 		    : \APP\Model\Books::getByYear($year);
 
-		// fixme подумай о ситуации когда не добавлено ни одной книги и год не задан Ошибки 404 не должно быть
-        if (empty($books)) {
+		// fixme подумай о ситуации когда не добавлено ни одной книги и год не задан Ошибки 404 не должно быть ok
+        if (empty($books) && $year) {
             $code_not_found = 404;
 
-            Error::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".self::getUrl($year)." не найдена");
+            Error::showError(null, $code_not_found, self::getUrl($year));
         }
 
         $content = Views::get(

@@ -37,13 +37,10 @@ class Routing
             }
         }
 
-		// todo используй тут
-	    /** @see \SYS\Error::index */
+		// todo используй тут ok
         $code_not_found = 404;
 
-        http_response_code($code_not_found);
-
-        echo "Ошибка ".$code_not_found.". Страница ".$url." не найдена";
+        Error::showError(null, $code_not_found, $url);
 
         exit;
     }

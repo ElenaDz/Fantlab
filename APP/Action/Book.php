@@ -16,7 +16,7 @@ class Book extends _Base
         if (empty($book)) {
             $code_not_found = 404;
 
-            Error::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".self::getUrl($id)." не найдена");
+            Error::showError(null, $code_not_found, self::getUrl($id));
         }
 
         $content = Views::get(
@@ -27,7 +27,7 @@ class Book extends _Base
         );
 
         self::showLayout(
-            $book->title,
+            $book->getTitle(),
 			$content,
             [
                 [
@@ -43,7 +43,7 @@ class Book extends _Base
                     'url' => Author::getUrl($book->author_name)
                 ],
                 [
-                    'name' => $book->title
+                    'name' => $book->getTitle()
                 ]
             ]
         );

@@ -1,6 +1,9 @@
 <?php
 namespace APP\Config;
 
+use APP\Action\Admin\BookAdd;
+use APP\Action\Admin\BookDelete;
+use APP\Action\Admin\BookUpdate;
 use APP\Action\Author;
 use APP\Action\Authors;
 use APP\Action\Book;
@@ -31,6 +34,18 @@ class Routes
             [
                 'authors/([A-z А-я]+)/',
                 [Author::class, 'index']
+            ],
+            [
+                'admin/book/add/',
+                [BookAdd::class, 'index']
+            ],
+            [
+                'admin/book/update/',
+                [BookUpdate::class, 'index']
+            ],
+            [
+                'admin/book/delete/',
+                [BookDelete::class, 'index']
             ]
         ];
     }

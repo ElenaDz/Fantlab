@@ -13,7 +13,7 @@ class Index extends _Base
             __DIR__ . '/../View/Index.php',
             [
                 'books' => $books,
-                'year' => $books[0]->year
+                'year' => $books[0]->getYear()
             ]
         );
 

@@ -2,25 +2,28 @@
 
 namespace APP\Action;
 
-use DateTimeImmutable;
 use Exception;
 use SYS\Error;
 use SYS\Views;
 
 class Author extends _Base
 {
+    /**
+     * @throws Exception
+     */
     public static function index($name)
     {
         $author = \APP\Model\Authors::getByName($name);
-		// fixme если автор не найден нужно ли выполнять эту строку? нижу опусти ее
-        $books = \APP\Model\Books::getByAuthorId($author->id);
+		// fixme если автор не найден нужно ли выполнять эту строку? нижу опусти ее ok
 
         if (empty($author)) {
             $code_not_found = 404;
 
-			// fixme не смущает тебя что у тебя везде повторяется один и тот же текст? может быть избавиться от повторения
-            Error::index($code_not_found, "Ошибка ".$code_not_found.". Страница ".$name." не найдена");
+			// fixme не смущает тебя что у тебя везде повторяется один и тот же текст? может быть избавиться от повторения ok
+            Error::showError(null, $code_not_found, self::getUrl($name));
         }
+
+        $books = \APP\Model\Books::getByAuthorId($author->id);
 
         $content = Views::get(
             __DIR__.'/../View/Author.php',
@@ -52,7 +55,6 @@ class Author extends _Base
     /**
      * @throws Exception
      */
-
     public static function getUrl($name): string
     {
         return "/authors/$name/";

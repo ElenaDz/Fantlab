@@ -60,7 +60,7 @@ a {
   dt {
     display: flex;
     align-items: baseline;
-    width: 18%;
+    width: 22%;
 
   }
   dd {
@@ -68,7 +68,7 @@ a {
     align-items: center;
     margin-left: 5px;
     font-size: 17px;
-    width: 80%;
+    width: auto;
   }
 }
 
@@ -76,4 +76,41 @@ a {
 .logo_book, .portrait {
   float: right;
   margin: 0 15px 0 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 0 10px;
+    width: 350px;
+  }
+
+  span {
+    margin-bottom: 10px;
+  }
+  .button_add {
+    margin: 15px 0 0 10px;
+    width: 130px;
+  }
+  .type, .release_year, .book_id {
+    width: fit-content;
+  }
+  .additional_information {
+    margin: 15px 0 0 10px;
+  }
+  .book_id {
+    border: 1px solid black;
+    background-color: rgb(241, 241, 241);
+  }
+  .type {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+  }
+}
+.delete_book, .update_book {
+  width: 140px;
 }

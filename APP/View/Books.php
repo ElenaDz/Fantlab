@@ -21,10 +21,14 @@ use APP\Entity\Book;
                 </a> -
             <?php endif;?>
 
-            <a href="<?= \APP\Action\Book::getUrl($book->id) ?>">
-                <?= $book->title; ?>
-                (<?= $book->year; ?>)
+            <a href="<?= \APP\Action\Book::getUrl($book->getId()) ?>">
+                <?= $book->getTitle(); ?>
+                (<?= $book->getYear(); ?>)
             </a>
         </li>
     <?php endforeach ?>
 </ul>
+
+<a href="<?= \APP\Action\Admin\BookAdd::getUrl()?>">
+    Добавить книгу
+</a>

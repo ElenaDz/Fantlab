@@ -18,8 +18,8 @@ use APP\Entity\Book;
         <a href="<?= \APP\Action\Author::getUrl($book->author_name)?>">
             <?= $book->author_name ?>
         </a> -
-        <a href="<?= \APP\Action\Book::getUrl($book->id) ?>">
-            <?= $book->title ?>
+        <a href="<?= \APP\Action\Book::getUrl($book->getID()) ?>">
+            <?= $book->getTitle() ?>
         </a>
     </li>
     <?php endforeach ?>
