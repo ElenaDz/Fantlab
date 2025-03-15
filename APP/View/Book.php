@@ -4,6 +4,7 @@ use APP\Entity\Book;
 /** @var Book $book */
 ?>
 <?php if ($book->getCover()):?>
+    <!-- fixme логика формирования урл обложки должна быть не здесь, а в классе книги  -->
     <img class="logo_book" src="/assets/imgs/covers/<?= $book->getId(); ?>.jpg"
          alt="Обложка книги <?= $book->getTitle(); ?>"
     >
@@ -35,8 +36,6 @@ use APP\Entity\Book;
     <div class="item">
         <dt>Год выхода:</dt>
         <dd class="release">
-            <!-- todo добавь возраст автора на момент написания книги, как здесь https://allking.club/books/Rattlesnakes/
-                  используй DateTime diff для расчета возраста ok-->
             <a href="<?= \APP\Action\Books::getUrl($book->getYear()) ?>"><?= $book->getYear(); ?></a> &nbsp
             (<?= $book->getAuthorAge() ?>)
         </dd>
@@ -44,6 +43,7 @@ use APP\Entity\Book;
     
     <div class="item">
         <dt><b>Описание:</b></dt>
+        <!-- fixme отступ не такой как у пунктов выше -->
         <dd class="description"><?= $book->getDescription(); ?></dd>
     </div>
 </dl>

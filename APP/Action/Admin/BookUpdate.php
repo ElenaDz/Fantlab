@@ -17,7 +17,6 @@ class BookUpdate extends _Base
     {
         $id = $_POST['id'];
 
-
         $book = Books::getById($id);
 
         if (empty($id)) {
@@ -25,10 +24,14 @@ class BookUpdate extends _Base
         }
 
         if (empty($book)) {
+			// fixme тут 404 ошибка не найдено
             Error::showError('Книга с id = "'.$id.'" не найдена', 500);
         }
 
-        if ($_POST ["is_update"]) {
+		// fixme is_update это лишнее Если у книги есть id значит это редактирование, если нет то добавление
+        if ($_POST ["is_update"])
+		{
+			// fixme здесь нужно не создавать книгу заново а брать ее из БД и задавать новые значения свойств
             $book = Book::create(
                 $_POST['title'],
                 $_POST['title_original'],
@@ -59,6 +62,7 @@ class BookUpdate extends _Base
             ]
         );
 
+		// fixme обычно используется слово "редактирование"
         self::showLayout('Изменение книги', $content);
     }
 

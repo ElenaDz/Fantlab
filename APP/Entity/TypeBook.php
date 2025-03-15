@@ -2,11 +2,13 @@
 
 namespace APP\Entity;
 
+// fixme перенеси все это в класс Book
 class TypeBook
 {
     public static function getAll(): array
     {
-        return [
+		// fixme ключи этого массива ни где не используются, убрать
+        return [ 
             'story' => 'рассказ',
             'novel' => 'повесть',
             'poem' => 'стих',

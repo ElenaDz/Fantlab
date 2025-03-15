@@ -37,10 +37,7 @@ class Routing
             }
         }
 
-		// todo используй тут ok
-        $code_not_found = 404;
-
-        Error::showError(null, $code_not_found, $url);
+        Error::showError(null, 404, $url);
 
         exit;
     }

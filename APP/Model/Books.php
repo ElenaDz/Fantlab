@@ -101,6 +101,8 @@ class Books
 
         $author = Authors::getByName($book->getAuthorName());
 
+		// fixme если автор не найден тут не будет объекта автор и нельзя будет обращаться к его id
+
         $author_id = $author->id;
 
         if (empty($author->id)) {
@@ -125,14 +127,12 @@ class Books
             'cover' => $book->getCover()
         ]);
 
-        return  self::getPDO()->lastInsertId();
+        return self::getPDO()->lastInsertId();
     }
 
     public static function delete(Book $book)
     {
         if (empty($book->getId())) return;
-
-        $cover_path = $book->getCoverPath();
 
         self::getPDO()->query(
             'DELETE FROM 
@@ -141,7 +141,10 @@ class Books
                         id='.((int) $book->getId())
         );
 
-        unlink($cover_path);
+	    $cover_path = $book->getCoverPath();
+	    if ($cover_path) {
+		    unlink($cover_path);
+	    }
     }
 
     /**
@@ -157,7 +160,9 @@ class Books
 
         $author = Authors::getByName($book->getAuthorName());
 
-        $author_id = $author->id;
+	    // fixme если автор не найден тут не будет объекта автор и нельзя будет обращаться к его id
+
+	    $author_id = $author->id;
 
         if (empty($author->id)) {
             $author_id = Authors::add($book->getAuthorName());

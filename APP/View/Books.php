@@ -29,6 +29,7 @@ use APP\Entity\Book;
     <?php endforeach ?>
 </ul>
 
+<!-- todo При переходе на добавление книги со страницы определенного автора, поле автор должно быть уже заполнено  -->
 <a href="<?= \APP\Action\Admin\BookAdd::getUrl()?>">
     Добавить книгу
 </a>

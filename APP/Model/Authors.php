@@ -7,9 +7,12 @@ use APP\Entity\Author;
 
 class Authors extends \APP\Entity\Author
 {
+	// fixme ты в каждой модели создает отдельное соединение с БД, так нельзя, соединение должно быть одно
+	//  создай базовый класс для моделей как мы это делали для экшинов и размести все что связано с получением $pdo там
+	//  используй protected для метода getPDO чтобы доступ был отсюда но не было снаружи
     private static $pdo;
 
-    public static function getPDO(): \PDO
+    private static function getPDO(): \PDO
     {
         if (empty(self::$pdo)) {
             self::$pdo = new \PDO('mysql:host=localhost;dbname=fantlab', 'root', '');

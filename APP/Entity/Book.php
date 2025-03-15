@@ -7,6 +7,8 @@ use Exception;
 class Book
 {
     const MIN_YEAR = 1901;
+
+
     private $id;
     private $title;
     private $title_original;
@@ -76,6 +78,7 @@ class Book
         return $this->id;
     }
 
+	// fixme у нас id формируется автоматически в БД, его нельзя изменить значит такого метода не должно быть
     /**
      * @param mixed $id
      */
@@ -92,14 +95,18 @@ class Book
         return $this->title;
     }
 
+	// fixme во всех сетерах, чтобы не делать лишней работы, нужно делать проверку, что новое значение отличается
+	//  от старого и только тогда что-то делать
     /**
      * @throws Exception
      */
     public function setTitle($title)
     {
+		// fixme так как мы работаем с русскими буквами в utf8 кодировке нам нужно пользоваться функциями
+		//  работы со строками с приставкой mb_ например mb_strlen Исправь везде
         if (strlen($title) > 150) {
             throw new \Exception(
-                'Заголовок книги не должен быть длинее 150 символов'
+                'Заголовок книги не должен быть длиннее 150 символов'
             );
         }
 
@@ -120,9 +127,10 @@ class Book
      */
     public function setTitleOriginal($title_original)
     {
+		// fixme почему то не удается сохранить название "0123456789 0123456789 0123456789 0123456789 0123456789"
         if (strlen($title_original) > 150) {
             throw new \Exception(
-                'Заголовок книги не должен быть длинее 150 символов'
+                'Заголовок книги не должен быть длиннее 150 символов'
             );
         }
 
@@ -143,11 +151,15 @@ class Book
      */
     public function setType($type)
     {
-        if (! TypeBook::isValidType($type)) {
+        if ( ! TypeBook::isValidType($type)) {
             throw new \Exception(
+				// fixme "в списке книг"?
+                // fixme а где пробелы внутри скобок
                 'Жанр "'.$type.'" не найден в списке книг: '.implode(',', TypeBook::getAll())
             );
         }
+
+		// todo поменяй тип столбца с varchar на enum в БД для type
         $this->type = $type;
     }
 
@@ -182,6 +194,7 @@ class Book
         return $this->description;
     }
 
+	// fixme что то у тебя в этом классе много слов "mixed" хотя я его вообще не использую, замени на что то имеющие смысл
     /**
      * @param mixed $description
      */
@@ -206,11 +219,13 @@ class Book
             $this->cover = null;
 
         } else {
+			// fixme это точно все еще нужно Может быть удалить?
             if (empty($this->getId())) {
                 throw new \Exception(
                     'Нельзя добавить обложку, пока книга не добавлена в базу данных. Потому что нет id.'
                 );
             }
+
             $extension = pathinfo($cover_url, \PATHINFO_EXTENSION);
 
             $extension = empty($extension) ? 'jpg' : $extension;
@@ -221,6 +236,7 @@ class Book
                     'Не удалось скачать '.$cover_url
                 );
             }
+
             $file_name = $this->getId().'.'.$extension;
 
             $file_path = __DIR__.'/../../assets/imgs/covers/'.$file_name;
@@ -240,7 +256,7 @@ class Book
     /**
      * @throws Exception
      */
-    public function save()
+	public function save()
     {
         if ($this->getId()) {
             Books::save($this);
@@ -252,8 +268,10 @@ class Book
         return $this->getId();
     }
 
-    public function getCoverPath(): string
+    public function getCoverPath()
     {
+		if (empty($this->getCover())) return null;
+
         return __DIR__.'/../../assets/imgs/covers/'.$this->getCover();
     }
 

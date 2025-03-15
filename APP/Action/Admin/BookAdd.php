@@ -14,7 +14,8 @@ class BookAdd extends _Base
      */
     public static function index()
     {
-        if (! empty($_POST)) {
+        if ( ! empty($_POST)) {
+			// todo не нравиться мне такая запись Добавь метод createFromArray просто передавай туда $_POST остальное внутри
             $book = Book::create(
                 $_POST['title'],
                 $_POST['title_original'],
@@ -30,7 +31,6 @@ class BookAdd extends _Base
 
             if ($cover_url) {
                 $book->setCoverUrl($cover_url);
-
                 $book->save();
             }
 
